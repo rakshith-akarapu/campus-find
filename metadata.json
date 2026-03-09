@@ -1,0 +1,5 @@
+{
+  "name": "CampusFind",
+  "description": "A web application where college students can report lost and found items on campus.",
+  "requestFramePermissions": []
+}
