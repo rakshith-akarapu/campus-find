@@ -16,7 +16,7 @@ export const MyPosts: React.FC = () => {
 
   useEffect(() => {
     if (!user) return;
-    
+
     setLoading(true);
 
     // Remove orderBy to avoid requiring a composite index in Firestore
@@ -24,22 +24,22 @@ export const MyPosts: React.FC = () => {
       collection(db, "items"),
       where("userId", "==", user.uid)
     );
-    
+
     const unsubscribe = onSnapshot(
-      q, 
+      q,
       (querySnapshot) => {
         const itemsData: any[] = [];
         querySnapshot.forEach((doc) => {
           itemsData.push({ id: doc.id, ...doc.data() });
         });
-        
+
         // Sort items by createdAt descending in memory
         itemsData.sort((a, b) => {
           const dateA = a.createdAt?.toDate() || new Date(0);
           const dateB = b.createdAt?.toDate() || new Date(0);
           return dateB.getTime() - dateA.getTime();
         });
-        
+
         setItems(itemsData);
         setLoading(false);
       },
@@ -61,15 +61,15 @@ export const MyPosts: React.FC = () => {
   );
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8">
+    <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12 space-y-6">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 md:gap-6">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900 tracking-tight">My Posts</h1>
+          <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 tracking-tight">My Posts</h1>
           <p className="mt-2 text-sm text-gray-500">
             Manage the items you have reported as lost or found.
           </p>
         </div>
-        <div className="relative max-w-md w-full">
+        <div className="relative w-full md:max-w-md mt-2 md:mt-0">
           <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
             <Search className="h-5 w-5 text-gray-400" />
           </div>
@@ -83,25 +83,23 @@ export const MyPosts: React.FC = () => {
         </div>
       </div>
 
-      <div className="border-b border-gray-200 mb-8">
-        <nav className="-mb-px flex space-x-8">
+      <div className="border-b border-gray-200">
+        <nav className="-mb-px flex gap-4 sm:gap-8 overflow-x-auto overflow-y-hidden pb-1 no-scrollbar">
           <button
             onClick={() => setActiveTab("lost")}
-            className={`${
-              activeTab === "lost"
+            className={`${activeTab === "lost"
                 ? "border-indigo-600 text-indigo-600"
                 : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300"
-            } whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm transition-colors`}
+              } whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm transition-colors`}
           >
             Lost Items
           </button>
           <button
             onClick={() => setActiveTab("found")}
-            className={`${
-              activeTab === "found"
+            className={`${activeTab === "found"
                 ? "border-indigo-600 text-indigo-600"
                 : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300"
-            } whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm transition-colors`}
+              } whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm transition-colors`}
           >
             Found Items
           </button>

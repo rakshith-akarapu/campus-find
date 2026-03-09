@@ -27,31 +27,29 @@ export const Navbar: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           <div className="flex items-center">
-            <Link to="/" className="flex-shrink-0 flex items-center gap-3 group">
-              <img 
-                src={logo} 
-                alt="CampusFind Logo" 
-                className="h-8 sm:h-10 w-auto object-contain transition-transform group-hover:scale-105" 
+            <Link to="/" className="flex-shrink-0 flex items-center gap-2 sm:gap-3 group">
+              <img
+                src={logo}
+                alt="CampusFind Logo"
+                className="h-8 sm:h-10 w-auto object-contain transition-transform group-hover:scale-105"
               />
-              <span className="font-bold text-xl text-gray-900 tracking-tight">CampusFind</span>
+              <span className="font-bold text-lg sm:text-xl text-gray-900 tracking-tight">CampusFind</span>
             </Link>
-            
+
             {user && (
               <div className="hidden md:ml-8 md:flex md:space-x-4">
                 <Link
                   to="/"
-                  className={`inline-flex items-center gap-1.5 px-3 py-2 rounded-md text-sm font-medium transition-colors ${
-                    isActive("/") ? "bg-indigo-50 text-indigo-700" : "text-gray-600 hover:bg-gray-50 hover:text-gray-900"
-                  }`}
+                  className={`inline-flex items-center gap-1.5 px-3 py-2 rounded-md text-sm font-medium transition-colors ${isActive("/") ? "bg-indigo-50 text-indigo-700" : "text-gray-600 hover:bg-gray-50 hover:text-gray-900"
+                    }`}
                 >
                   <LayoutDashboard className="h-4 w-4" />
                   Dashboard
                 </Link>
                 <Link
                   to="/my-posts"
-                  className={`inline-flex items-center gap-1.5 px-3 py-2 rounded-md text-sm font-medium transition-colors ${
-                    isActive("/my-posts") ? "bg-indigo-50 text-indigo-700" : "text-gray-600 hover:bg-gray-50 hover:text-gray-900"
-                  }`}
+                  className={`inline-flex items-center gap-1.5 px-3 py-2 rounded-md text-sm font-medium transition-colors ${isActive("/my-posts") ? "bg-indigo-50 text-indigo-700" : "text-gray-600 hover:bg-gray-50 hover:text-gray-900"
+                    }`}
                 >
                   <FolderHeart className="h-4 w-4" />
                   My Posts
@@ -59,7 +57,7 @@ export const Navbar: React.FC = () => {
               </div>
             )}
           </div>
-          
+
           <div className="flex items-center gap-3">
             {user ? (
               <>
@@ -83,7 +81,7 @@ export const Navbar: React.FC = () => {
                     <LogOut className="h-5 w-5" />
                   </button>
                 </div>
-                
+
                 {/* Mobile menu button */}
                 <div className="flex items-center md:hidden">
                   <button
@@ -126,9 +124,8 @@ export const Navbar: React.FC = () => {
             <Link
               to="/"
               onClick={() => setIsMobileMenuOpen(false)}
-              className={`block px-3 py-2 rounded-md text-base font-medium ${
-                isActive("/") ? "bg-indigo-50 text-indigo-700" : "text-gray-700 hover:bg-gray-50 hover:text-gray-900"
-              }`}
+              className={`block px-3 py-2 rounded-md text-base font-medium ${isActive("/") ? "bg-indigo-50 text-indigo-700" : "text-gray-700 hover:bg-gray-50 hover:text-gray-900"
+                }`}
             >
               <div className="flex items-center gap-2">
                 <LayoutDashboard className="h-5 w-5" />
@@ -138,9 +135,8 @@ export const Navbar: React.FC = () => {
             <Link
               to="/my-posts"
               onClick={() => setIsMobileMenuOpen(false)}
-              className={`block px-3 py-2 rounded-md text-base font-medium ${
-                isActive("/my-posts") ? "bg-indigo-50 text-indigo-700" : "text-gray-700 hover:bg-gray-50 hover:text-gray-900"
-              }`}
+              className={`block px-3 py-2 rounded-md text-base font-medium ${isActive("/my-posts") ? "bg-indigo-50 text-indigo-700" : "text-gray-700 hover:bg-gray-50 hover:text-gray-900"
+                }`}
             >
               <div className="flex items-center gap-2">
                 <FolderHeart className="h-5 w-5" />
@@ -150,9 +146,8 @@ export const Navbar: React.FC = () => {
             <Link
               to="/post"
               onClick={() => setIsMobileMenuOpen(false)}
-              className={`block px-3 py-2 rounded-md text-base font-medium ${
-                isActive("/post") ? "bg-indigo-50 text-indigo-700" : "text-gray-700 hover:bg-gray-50 hover:text-gray-900"
-              }`}
+              className={`block px-3 py-2 rounded-md text-base font-medium ${isActive("/post") ? "bg-indigo-50 text-indigo-700" : "text-gray-700 hover:bg-gray-50 hover:text-gray-900"
+                }`}
             >
               <div className="flex items-center gap-2">
                 <PlusCircle className="h-5 w-5" />

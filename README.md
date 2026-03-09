@@ -1,20 +1,53 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# CampusFind
 
-# Run and deploy your AI Studio app
+A modern web application that helps students report and find lost items easily across a university campus.
 
-This contains everything you need to run your app locally.
+## Live Demo
+https://campus-find-sigma.vercel.app
 
-View your app in AI Studio: https://ai.studio/apps/ea436b4a-f0f1-46cc-8f9f-495ecbeec999
+## Features
+- Add lost and found items
+- Upload item images
+- Search and filter items by location or description
+- Track item status (Open/Returned)
+- Detailed dashboard for managing your posts
+- Responsive UI
+
+## Tech Stack
+- React (Vite)
+- TypeScript
+- Tailwind CSS
+- Firebase (Auth, Firestore)
+- Cloudinary (Image handling)
 
 ## Run Locally
 
-**Prerequisites:**  Node.js
+Clone the project
 
+```bash
+git clone https://github.com/rakshith-akarapu/campus-find
+```
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+Install dependencies
+
+```bash
+npm install
+```
+
+Configure `.env` file with your Firebase credentials:
+```env
+VITE_FIREBASE_API_KEY=AIzaSyCjALQKjxbtZOq_4ULt5SPhBHJ1o9k2iao
+VITE_FIREBASE_AUTH_DOMAIN=campusfind-644ed.firebaseapp.com
+VITE_FIREBASE_PROJECT_ID=campusfind-644ed
+VITE_FIREBASE_MESSAGING_SENDER_ID=262077684423
+VITE_FIREBASE_APP_ID=1:262077684423:web:f883d778f94f053be5fce2
+```
+
+Start the project
+
+```bash
+npm run dev
+```
+
+## Author
+Built by Rakshith Akarapu
