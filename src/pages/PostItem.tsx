@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 import { createItem } from "../services/itemService";
 import { ArrowLeft, CheckCircle2, Upload, X, Image as ImageIcon } from "lucide-react";
+import imageCompression from "browser-image-compression";
 
 export const PostItem: React.FC = () => {
   const { user } = useAuth();
@@ -19,23 +20,37 @@ export const PostItem: React.FC = () => {
   const [imagePreview, setImagePreview] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleImageChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
 
-    if (file.size > 5 * 1024 * 1024) { // 5MB limit
-      setError("Image must be less than 5MB");
-      return;
+    try {
+      const options = {
+        maxSizeMB: 1,
+        maxWidthOrHeight: 1920,
+        useWebWorker: true,
+      };
+
+      const compressedFile = await imageCompression(file, options);
+      console.log("Original file:", file);
+      console.log("Compressed file:", compressedFile);
+
+      if (compressedFile.size > 5 * 1024 * 1024) { // 5MB limit
+        setError("Image must be less than 5MB");
+        return;
+      }
+
+      setImageFile(compressedFile);
+
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setImagePreview(reader.result as string);
+      };
+      reader.readAsDataURL(compressedFile);
+    } catch (error) {
+      console.error("Error compressing image:", error);
+      setError("Failed to process image. Please try again.");
     }
-
-    console.log("Selected file:", file); // Debug logging for mobile file object
-    setImageFile(file);
-
-    const reader = new FileReader();
-    reader.onloadend = () => {
-      setImagePreview(reader.result as string);
-    };
-    reader.readAsDataURL(file);
   };
 
   const removeImage = () => {
@@ -136,8 +151,8 @@ export const PostItem: React.FC = () => {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <label
                     className={`relative flex cursor-pointer rounded-xl border p-4 focus:outline-none transition-all ${type === "lost"
-                        ? "bg-indigo-50 border-indigo-600 ring-1 ring-indigo-600"
-                        : "bg-white border-gray-200 hover:bg-gray-50"
+                      ? "bg-indigo-50 border-indigo-600 ring-1 ring-indigo-600"
+                      : "bg-white border-gray-200 hover:bg-gray-50"
                       }`}
                   >
                     <input
@@ -165,8 +180,8 @@ export const PostItem: React.FC = () => {
 
                   <label
                     className={`relative flex cursor-pointer rounded-xl border p-4 focus:outline-none transition-all ${type === "found"
-                        ? "bg-indigo-50 border-indigo-600 ring-1 ring-indigo-600"
-                        : "bg-white border-gray-200 hover:bg-gray-50"
+                      ? "bg-indigo-50 border-indigo-600 ring-1 ring-indigo-600"
+                      : "bg-white border-gray-200 hover:bg-gray-50"
                       }`}
                   >
                     <input
