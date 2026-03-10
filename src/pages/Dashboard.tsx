@@ -42,7 +42,7 @@ export const Dashboard: React.FC = () => {
             Help others find what they lost, or find what you're looking for.
           </p>
         </div>
-        <div className="relative w-full md:max-w-md mt-2 md:mt-0">
+        <div className="relative w-full max-w-2xl mt-4 md:mt-0 flex-shrink">
           <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
             <Search className="h-5 w-5 text-gray-400" />
           </div>
@@ -61,8 +61,8 @@ export const Dashboard: React.FC = () => {
           <button
             onClick={() => setActiveTab("lost")}
             className={`${activeTab === "lost"
-                ? "border-indigo-600 text-indigo-600"
-                : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300"
+              ? "border-indigo-600 text-indigo-600"
+              : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300"
               } whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm transition-colors`}
           >
             Lost Items
@@ -70,8 +70,8 @@ export const Dashboard: React.FC = () => {
           <button
             onClick={() => setActiveTab("found")}
             className={`${activeTab === "found"
-                ? "border-indigo-600 text-indigo-600"
-                : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300"
+              ? "border-indigo-600 text-indigo-600"
+              : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300"
               } whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm transition-colors`}
           >
             Found Items
