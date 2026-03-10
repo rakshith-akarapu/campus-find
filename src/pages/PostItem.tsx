@@ -9,30 +9,33 @@ export const PostItem: React.FC = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  
+
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [location, setLocation] = useState("");
   const [type, setType] = useState<"lost" | "found">("lost");
-  
+
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [imagePreview, setImagePreview] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
-    if (file) {
-      if (file.size > 5 * 1024 * 1024) { // 5MB limit
-        setError("Image must be less than 5MB");
-        return;
-      }
-      setImageFile(file);
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setImagePreview(reader.result as string);
-      };
-      reader.readAsDataURL(file);
+    if (!file) return;
+
+    if (file.size > 5 * 1024 * 1024) { // 5MB limit
+      setError("Image must be less than 5MB");
+      return;
     }
+
+    console.log("Selected file:", file); // Debug logging for mobile file object
+    setImageFile(file);
+
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      setImagePreview(reader.result as string);
+    };
+    reader.readAsDataURL(file);
   };
 
   const removeImage = () => {
@@ -67,7 +70,7 @@ export const PostItem: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!user) return;
-    
+
     setError("");
     setLoading(true);
 
@@ -116,7 +119,7 @@ export const PostItem: React.FC = () => {
               Provide details about the item you lost or found on campus. The more details you provide, the easier it will be to identify.
             </p>
           </div>
-          
+
           <form className="mt-8 space-y-8" onSubmit={handleSubmit}>
             {error && (
               <div className="bg-red-50 border border-red-100 text-red-600 px-4 py-3 rounded-xl text-sm flex items-center gap-2">
@@ -132,11 +135,10 @@ export const PostItem: React.FC = () => {
                 </label>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <label
-                    className={`relative flex cursor-pointer rounded-xl border p-4 focus:outline-none transition-all ${
-                      type === "lost"
+                    className={`relative flex cursor-pointer rounded-xl border p-4 focus:outline-none transition-all ${type === "lost"
                         ? "bg-indigo-50 border-indigo-600 ring-1 ring-indigo-600"
                         : "bg-white border-gray-200 hover:bg-gray-50"
-                    }`}
+                      }`}
                   >
                     <input
                       type="radio"
@@ -162,11 +164,10 @@ export const PostItem: React.FC = () => {
                   </label>
 
                   <label
-                    className={`relative flex cursor-pointer rounded-xl border p-4 focus:outline-none transition-all ${
-                      type === "found"
+                    className={`relative flex cursor-pointer rounded-xl border p-4 focus:outline-none transition-all ${type === "found"
                         ? "bg-indigo-50 border-indigo-600 ring-1 ring-indigo-600"
                         : "bg-white border-gray-200 hover:bg-gray-50"
-                    }`}
+                      }`}
                   >
                     <input
                       type="radio"

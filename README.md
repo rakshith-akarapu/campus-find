@@ -36,11 +36,12 @@ npm install
 
 Configure `.env` file with your Firebase credentials:
 ```env
-VITE_FIREBASE_API_KEY=AIzaSyCjALQKjxbtZOq_4ULt5SPhBHJ1o9k2iao
-VITE_FIREBASE_AUTH_DOMAIN=campusfind-644ed.firebaseapp.com
-VITE_FIREBASE_PROJECT_ID=campusfind-644ed
-VITE_FIREBASE_MESSAGING_SENDER_ID=262077684423
-VITE_FIREBASE_APP_ID=1:262077684423:web:f883d778f94f053be5fce2
+VITE_FIREBASE_API_KEY=your_api_key_here
+VITE_FIREBASE_AUTH_DOMAIN=your_project.firebaseapp.com
+VITE_FIREBASE_PROJECT_ID=your_project_id
+VITE_FIREBASE_STORAGE_BUCKET=your_project.appspot.com
+VITE_FIREBASE_MESSAGING_SENDER_ID=your_sender_id
+VITE_FIREBASE_APP_ID=your_app_id
 ```
 
 Start the project

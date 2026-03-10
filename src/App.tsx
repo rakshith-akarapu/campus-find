@@ -16,6 +16,7 @@ import { MyPosts } from "./pages/MyPosts";
 import { ProtectedRoute } from "./components/ProtectedRoute";
 import { isFirebaseConfigured } from "./services/firebase";
 import { FirebaseNotConfigured } from "./components/FirebaseNotConfigured";
+import { Footer } from "./components/Footer";
 
 export default function App() {
   if (!isFirebaseConfigured) {
@@ -51,6 +52,7 @@ export default function App() {
               />
             </Routes>
           </main>
+          <Footer />
         </div>
       </Router>
     </AuthProvider>
